@@ -47,6 +47,11 @@
         color: var(--primary-green) !important;
       }
 
+      .navbar-logo {
+        height: 40px; /* Adjust as needed */
+        width: auto;
+      }
+
       .nav-link {
         font-weight: 500;
         transition: color 0.3s ease;
@@ -242,6 +247,19 @@
         padding: 4rem 0 2rem;
       }
 
+      [data-bs-theme="dark"] .footer {
+        background: #1a202c;
+        color: #f8f9fa;
+      }
+
+      [data-bs-theme="dark"] .footer a {
+        color: #adb5bd !important;
+      }
+
+      [data-bs-theme="dark"] .footer a:hover {
+        color: #e2e6ea !important;
+      }
+
       .theme-toggle {
         background: none;
         border: 2px solid var(--primary-green);
@@ -313,7 +331,18 @@
         }
       }
 
+      .hero-image img {
+        max-width: 80%;
+        height: auto;
+        border-radius: 20px;
+        /* box-shadow: 0 20px 40px rgba(16, 185, 129, 0.2); */
+      }
+
       @media (max-width: 768px) {
+        .hero-image {
+          display: none;
+        }
+
         .hero h1 {
           font-size: 2.5rem;
         }
@@ -358,7 +387,12 @@
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
         <a class="navbar-brand" href="#">
-          <i class="fas fa-school me-2"></i>RBJ Corp
+          <img
+            src="https://www.bgn.go.id/logo-bgn.png"
+            alt="RBJ Corp Logo"
+            class="navbar-logo me-2"
+          />
+          RBJ Corp
         </a>
         <button
           class="navbar-toggler"
@@ -418,14 +452,7 @@
           </div>
           <div class="col-lg-6 text-center">
             <div class="hero-image">
-              <i
-                class="fas fa-school"
-                style="
-                  font-size: 15rem;
-                  color: var(--primary-green);
-                  opacity: 0.8;
-                "
-              ></i>
+              <img src="https://www.bgn.go.id/logo-bgn.png" />
             </div>
           </div>
         </div>
@@ -738,9 +765,9 @@
             </p>
             <div class="social-links">
               <a href="#" class="me-3"><i class="fab fa-facebook"></i></a>
-              <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="me-3"><i class="fab fa-x"></i></a>
               <a href="#" class="me-3"><i class="fab fa-linkedin"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
             </div>
           </div>
           <div class="col-lg-2 col-md-6 mb-4">
