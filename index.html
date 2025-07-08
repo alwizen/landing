@@ -41,6 +41,23 @@
         transition: all 0.3s ease;
       }
 
+      .navbar.navbar-scrolled {
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      [data-bs-theme="dark"] .navbar.navbar-scrolled {
+        background: rgba(2, 6, 23, 0.9);
+      }
+
+      [data-bs-theme="dark"] .navbar-scrolled .nav-link {
+        color: #f8f9fa !important;
+      }
+
+      [data-bs-theme="dark"] .navbar-scrolled .nav-link:hover {
+        color: var(--primary-green) !important;
+      }
+
       .navbar-brand {
         font-weight: 700;
         font-size: 1.5rem;
@@ -180,6 +197,10 @@
         margin-bottom: 3rem;
         text-align: center;
         position: relative;
+      }
+
+      [data-bs-theme="dark"] .section-title {
+        color: white;
       }
 
       .section-title::after {
@@ -388,7 +409,7 @@
       <div class="container">
         <a class="navbar-brand" href="#">
           <img
-            src="https://www.bgn.go.id/logo-bgn.png"
+            src="assets/img/hero1.png"
             alt="RBJ Corp Logo"
             class="navbar-logo me-2"
           />
@@ -452,7 +473,7 @@
           </div>
           <div class="col-lg-6 text-center">
             <div class="hero-image">
-              <img src="https://www.bgn.go.id/logo-bgn.png" />
+              <img src="assets/img/hero2.png" />
             </div>
           </div>
         </div>
@@ -863,11 +884,9 @@
         const scrollTop = window.pageYOffset;
 
         if (scrollTop > 50) {
-          navbar.style.background = "rgba(255, 255, 255, 0.95)";
-          navbar.style.boxShadow = "0 2px 20px rgba(0,0,0,0.1)";
+          navbar.classList.add("navbar-scrolled");
         } else {
-          navbar.style.background = "rgba(255, 255, 255, 0.1)";
-          navbar.style.boxShadow = "none";
+          navbar.classList.remove("navbar-scrolled");
         }
       });
 
