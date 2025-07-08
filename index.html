@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="id" data-bs-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RBJ Corp - Company Profile</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-green: #10b981;
+        --secondary-green: #059669;
+        --light-green: #d1fae5;
+        --dark-green: #064e3b;
+        --accent-green: #34d399;
+      }
+
+      [data-bs-theme="dark"] {
+        --primary-green: #34d399;
+        --secondary-green: #10b981;
+        --light-green: #064e3b;
+        --dark-green: #d1fae5;
+        --accent-green: #059669;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        line-height: 1.6;
+        transition: all 0.3s ease;
+      }
+
+      .navbar {
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+      }
+
+      .navbar-brand {
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: var(--primary-green) !important;
+      }
+
+      .nav-link {
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .nav-link:hover {
+        color: var(--primary-green) !important;
+      }
+
+      .btn-primary {
+        background: linear-gradient(
+          135deg,
+          var(--primary-green),
+          var(--secondary-green)
+        );
+        border: none;
+        border-radius: 25px;
+        padding: 12px 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+      }
+
+      .btn-outline-primary {
+        border: 2px solid var(--primary-green);
+        color: var(--primary-green);
+        border-radius: 25px;
+        padding: 12px 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .btn-outline-primary:hover {
+        background: var(--primary-green);
+        transform: translateY(-2px);
+      }
+
+      .hero {
+        background: linear-gradient(
+          135deg,
+          var(--light-green),
+          rgba(16, 185, 129, 0.1)
+        );
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(16,185,129,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+        z-index: -1;
+      }
+
+      .hero-content {
+        z-index: 2;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: var(--dark-green);
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+        color: var(--secondary-green);
+        margin-bottom: 2rem;
+      }
+
+      .feature-card {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 20px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(16, 185, 129, 0.1);
+        backdrop-filter: blur(10px);
+      }
+
+      [data-bs-theme="dark"] .feature-card {
+        background: rgba(31, 41, 55, 0.9);
+        border-color: rgba(16, 185, 129, 0.2);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15);
+      }
+
+      .feature-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(
+          135deg,
+          var(--primary-green),
+          var(--accent-green)
+        );
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+        color: white;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--dark-green);
+        margin-bottom: 3rem;
+        text-align: center;
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(
+          135deg,
+          var(--primary-green),
+          var(--accent-green)
+        );
+        border-radius: 2px;
+      }
+
+      .stats-counter {
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--primary-green);
+        margin-bottom: 0.5rem;
+      }
+
+      .team-card {
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(16, 185, 129, 0.1);
+      }
+
+      [data-bs-theme="dark"] .team-card {
+        background: rgba(31, 41, 55, 0.9);
+        border-color: rgba(16, 185, 129, 0.2);
+      }
+
+      .team-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(16, 185, 129, 0.15);
+      }
+
+      .team-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: linear-gradient(
+          135deg,
+          var(--primary-green),
+          var(--accent-green)
+        );
+        margin: 0 auto 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        color: white;
+      }
+
+      .footer {
+        background: var(--dark-green);
+        color: white;
+        padding: 4rem 0 2rem;
+      }
+
+      .theme-toggle {
+        background: none;
+        border: 2px solid var(--primary-green);
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        color: var(--primary-green);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .theme-toggle:hover {
+        background: var(--primary-green);
+        color: white;
+        transform: rotate(180deg);
+      }
+
+      .floating-shapes {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .shape {
+        position: absolute;
+        background: rgba(16, 185, 129, 0.1);
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .shape:nth-child(1) {
+        width: 100px;
+        height: 100px;
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+
+      .shape:nth-child(2) {
+        width: 150px;
+        height: 150px;
+        top: 60%;
+        right: 10%;
+        animation-delay: 2s;
+      }
+
+      .shape:nth-child(3) {
+        width: 80px;
+        height: 80px;
+        bottom: 20%;
+        left: 20%;
+        animation-delay: 4s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero p {
+          font-size: 1.1rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+      }
+
+      .scroll-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--primary-green);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        opacity: 0;
+        transition: all 0.3s ease;
+        z-index: 1000;
+      }
+
+      .scroll-to-top.show {
+        opacity: 1;
+      }
+
+      .scroll-to-top:hover {
+        background: var(--secondary-green);
+        transform: translateY(-2px);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <i class="fas fa-school me-2"></i>RBJ Corp
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto me-3">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Beranda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">Tentang</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#services">Layanan</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#team">Tim</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Kontak</a>
+            </li>
+          </ul>
+          <button class="theme-toggle" onclick="toggleTheme()">
+            <i class="fas fa-moon" id="theme-icon"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+      </div>
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 hero-content">
+            <h1>Solusi Teknologi Hijau untuk Masa Depan</h1>
+            <p>
+              Kami menghadirkan inovasi teknologi ramah lingkungan yang
+              berkelanjutan untuk membangun dunia yang lebih baik bagi generasi
+              mendatang.
+            </p>
+            <div class="d-flex gap-3 flex-wrap">
+              <button class="btn btn-primary btn-lg">Mulai Sekarang</button>
+              <button class="btn btn-outline-primary btn-lg">
+                Pelajari Lebih Lanjut
+              </button>
+            </div>
+          </div>
+          <div class="col-lg-6 text-center">
+            <div class="hero-image">
+              <i
+                class="fas fa-school"
+                style="
+                  font-size: 15rem;
+                  color: var(--primary-green);
+                  opacity: 0.8;
+                "
+              ></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+      <div class="container">
+        <h2 class="section-title">Tentang Kami</h2>
+        <div class="row">
+          <div class="col-lg-6 mb-4">
+            <div class="feature-card h-100">
+              <div class="feature-icon">
+                <i class="fas fa-rocket"></i>
+              </div>
+              <h3>Visi Kami</h3>
+              <p>
+                Menjadi perusahaan teknologi hijau terdepan yang menciptakan
+                solusi inovatif untuk keberlanjutan lingkungan dan pertumbuhan
+                ekonomi yang bertanggung jawab.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6 mb-4">
+            <div class="feature-card h-100">
+              <div class="feature-icon">
+                <i class="fas fa-bullseye"></i>
+              </div>
+              <h3>Misi Kami</h3>
+              <p>
+                Mengembangkan dan menerapkan teknologi ramah lingkungan yang
+                dapat diakses oleh semua kalangan, sambil membangun ekosistem
+                bisnis yang berkelanjutan.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="row text-center mt-5">
+          <div class="col-md-3 col-6 mb-4">
+            <div class="stats-counter">500+</div>
+            <p>Klien Puas</p>
+          </div>
+          <div class="col-md-3 col-6 mb-4">
+            <div class="stats-counter">50+</div>
+            <p>Proyek Selesai</p>
+          </div>
+          <div class="col-md-3 col-6 mb-4">
+            <div class="stats-counter">10+</div>
+            <p>Tahun Pengalaman</p>
+          </div>
+          <div class="col-md-3 col-6 mb-4">
+            <div class="stats-counter">24/7</div>
+            <p>Dukungan</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="section-title">Layanan Kami</h2>
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="feature-card h-100">
+              <div class="feature-icon">
+                <i class="fas fa-solar-panel"></i>
+              </div>
+              <h4>Energi Terbarukan</h4>
+              <p>
+                Konsultasi dan implementasi sistem energi terbarukan seperti
+                panel surya, turbin angin, dan sistem hibrida untuk kebutuhan
+                rumah tangga dan industri.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="feature-card h-100">
+              <div class="feature-icon">
+                <i class="fas fa-recycle"></i>
+              </div>
+              <h4>Manajemen Limbah</h4>
+              <p>
+                Solusi teknologi untuk pengelolaan limbah yang efisien dan ramah
+                lingkungan, termasuk daur ulang dan pengolahan limbah organik.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="feature-card h-100">
+              <div class="feature-icon">
+                <i class="fas fa-microchip"></i>
+              </div>
+              <h4>Smart Technology</h4>
+              <p>
+                Pengembangan sistem IoT dan AI untuk monitoring lingkungan,
+                optimasi energi, dan otomasi proses industri yang berkelanjutan.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="feature-card h-100">
+              <div class="feature-icon">
+                <i class="fas fa-leaf"></i>
+              </div>
+              <h4>Konsultasi Lingkungan</h4>
+              <p>
+                Audit lingkungan, penilaian dampak, dan strategi keberlanjutan
+                untuk membantu bisnis mengurangi jejak karbon mereka.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="feature-card h-100">
+              <div class="feature-icon">
+                <i class="fas fa-water"></i>
+              </div>
+              <h4>Teknologi Air</h4>
+              <p>
+                Sistem pemurnian air, pengolahan air limbah, dan teknologi
+                konservasi air untuk kebutuhan industri dan komunitas.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="feature-card h-100">
+              <div class="feature-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <h4>Analitik Hijau</h4>
+              <p>
+                Platform analitik untuk memantau dan mengoptimalkan performa
+                lingkungan, efisiensi energi, dan ROI investasi hijau.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-5">
+      <div class="container">
+        <h2 class="section-title">Tim Kami</h2>
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="team-card">
+              <div class="team-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <h4>Dr. Ahmad Suryanto</h4>
+              <p class="text-muted">CEO & Founder</p>
+              <p>
+                Ahli teknologi lingkungan dengan pengalaman 15 tahun dalam
+                industri energi terbarukan.
+              </p>
+              <div class="social-links">
+                <a href="#" class="me-3"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="team-card">
+              <div class="team-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <h4>Sari Indrawati, M.Eng</h4>
+              <p class="text-muted">CTO</p>
+              <p>
+                Insinyur perangkat lunak dengan spesialisasi dalam IoT dan
+                sistem cerdas untuk aplikasi lingkungan.
+              </p>
+              <div class="social-links">
+                <a href="#" class="me-3"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="me-3"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="team-card">
+              <div class="team-avatar">
+                <i class="fas fa-user"></i>
+              </div>
+              <h4>Budi Santoso, MBA</h4>
+              <p class="text-muted">Head of Sales</p>
+              <p>
+                Pakar bisnis dengan track record sukses dalam pengembangan pasar
+                teknologi hijau di Asia Tenggara.
+              </p>
+              <div class="social-links">
+                <a href="#" class="me-3"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="section-title">Hubungi Kami</h2>
+        <div class="row">
+          <div class="col-lg-6 mb-4">
+            <div class="feature-card h-100">
+              <h4>Informasi Kontak</h4>
+              <div class="contact-info">
+                <div class="d-flex align-items-center mb-3">
+                  <div
+                    class="feature-icon me-3"
+                    style="width: 50px; height: 50px; font-size: 1.2rem"
+                  >
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div>
+                    <strong>Alamat:</strong><br />
+                    Jl. Teknologi Hijau No. 123<br />
+                    Jakarta Selatan, 12345
+                  </div>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                  <div
+                    class="feature-icon me-3"
+                    style="width: 50px; height: 50px; font-size: 1.2rem"
+                  >
+                    <i class="fas fa-phone"></i>
+                  </div>
+                  <div>
+                    <strong>Telepon:</strong><br />
+                    +62 21 1234 5678
+                  </div>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                  <div
+                    class="feature-icon me-3"
+                    style="width: 50px; height: 50px; font-size: 1.2rem"
+                  >
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  <div>
+                    <strong>Email:</strong><br />
+                    info@greentechsolutions.com
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="feature-card h-100">
+              <h4>Kirim Pesan</h4>
+              <form>
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nama Lengkap"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Email"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="tel"
+                    class="form-control"
+                    placeholder="Nomor Telepon"
+                  />
+                </div>
+                <div class="mb-3">
+                  <textarea
+                    class="form-control"
+                    rows="4"
+                    placeholder="Pesan Anda"
+                    required
+                  ></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">
+                  Kirim Pesan
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 mb-4">
+            <h5><i class="fas fa-leaf me-2"></i>RBJ Corp</h5>
+            <p>
+              Solusi teknologi hijau untuk masa depan yang berkelanjutan.
+              Bersama kita membangun dunia yang lebih baik.
+            </p>
+            <div class="social-links">
+              <a href="#" class="me-3"><i class="fab fa-facebook"></i></a>
+              <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="me-3"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4">
+            <h6>Perusahaan</h6>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-white-50">Tentang Kami</a></li>
+              <li><a href="#" class="text-white-50">Karir</a></li>
+              <li><a href="#" class="text-white-50">Berita</a></li>
+              <li><a href="#" class="text-white-50">Investor</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4">
+            <h6>Layanan</h6>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-white-50">Konsultasi</a></li>
+              <li><a href="#" class="text-white-50">Implementasi</a></li>
+              <li><a href="#" class="text-white-50">Maintenance</a></li>
+              <li><a href="#" class="text-white-50">Training</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4">
+            <h6>Dukungan</h6>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-white-50">Help Center</a></li>
+              <li><a href="#" class="text-white-50">Dokumentasi</a></li>
+              <li><a href="#" class="text-white-50">FAQ</a></li>
+              <li><a href="#" class="text-white-50">Kontak</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 mb-4">
+            <h6>Legal</h6>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-white-50">Privacy Policy</a></li>
+              <li><a href="#" class="text-white-50">Terms of Service</a></li>
+              <li><a href="#" class="text-white-50">Cookie Policy</a></li>
+              <li><a href="#" class="text-white-50">Disclaimer</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr class="my-4" />
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <p class="mb-0">&copy; 2025 RBJ Corp. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <p class="mb-0">
+              Made with <i class="fas fa-heart text-danger"></i> for a better
+              future
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" onclick="scrollToTop()">
+      <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Theme Toggle
+      function toggleTheme() {
+        const html = document.documentElement;
+        const themeIcon = document.getElementById("theme-icon");
+        const currentTheme = html.getAttribute("data-bs-theme");
+
+        if (currentTheme === "light") {
+          html.setAttribute("data-bs-theme", "dark");
+          themeIcon.className = "fas fa-sun";
+        } else {
+          html.setAttribute("data-bs-theme", "light");
+          themeIcon.className = "fas fa-moon";
+        }
+      }
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      // Navbar background on scroll
+      window.addEventListener("scroll", function () {
+        const navbar = document.querySelector(".navbar");
+        const scrollTop = window.pageYOffset;
+
+        if (scrollTop > 50) {
+          navbar.style.background = "rgba(255, 255, 255, 0.95)";
+          navbar.style.boxShadow = "0 2px 20px rgba(0,0,0,0.1)";
+        } else {
+          navbar.style.background = "rgba(255, 255, 255, 0.1)";
+          navbar.style.boxShadow = "none";
+        }
+      });
+
+      // Scroll to top button
+      const scrollToTopButton = document.querySelector(".scroll-to-top");
+
+      window.addEventListener("scroll", function () {
+        if (window.pageYOffset > 300) {
+          scrollToTopButton.classList.add("show");
+        } else {
+          scrollToTopButton.classList.remove("show");
+        }
+      });
+
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+
+      // Counter animation
+      function animateCounters() {
+        const counters = document.querySelectorAll(".stats-counter");
+
+        counters.forEach((counter) => {
+          const target = parseInt(counter.textContent);
+          const increment = target / 100;
+          let current = 0;
+
+          const updateCounter = () => {
+            if (current < target) {
+              current += increment;
+              counter.textContent =
+                Math.ceil(current) +
+                (counter.textContent.includes("+") ? "+" : "");
+              requestAnimationFrame(updateCounter);
+            } else {
+              counter.textContent =
+                target + (counter.textContent.includes("+") ? "+" : "");
+            }
+          };
+
+          updateCounter();
+        });
+      }
+
+      // Intersection Observer for animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+
+            // Trigger counter animation when stats section is visible
+            if (entry.target.querySelector(".stats-counter")) {
+              animateCounters();
+            }
+          }
+        });
+      }, observerOptions);
+
+      // Initialize animations
+      document.addEventListener("DOMContentLoaded", function () {
+        // Set initial state for animated elements
+        const animatedElements = document.querySelectorAll(
+          ".feature-card, .team-card"
+        );
+        animatedElements.forEach((el) => {
+          el.style.opacity = "0";
+          el.style.transform = "translateY(30px)";
+          el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+          observer.observe(el);
+        });
+
+        // Observe stats section
+        const statsSection = document.querySelector(".row.text-center.mt-5");
+        if (statsSection) {
+          observer.observe(statsSection);
+        }
+      });
+
+      // Form submission
+      document.querySelector("form").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Show success message
+        const button = this.querySelector('button[type="submit"]');
+        const originalText = button.textContent;
+
+        button.textContent = "Mengirim...";
+        button.disabled = true;
+
+        // Simulate form submission
+        setTimeout(() => {
+          button.textContent = "Terkirim!";
+          button.style.background = "#10b981";
+
+          // Reset form
+          this.reset();
+
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.disabled = false;
+            button.style.background = "";
+          }, 2000);
+        }, 1500);
+      });
+
+      // Parallax effect for hero section
+      window.addEventListener("scroll", function () {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector(".hero");
+        const heroContent = document.querySelector(".hero-content");
+
+        if (hero && heroContent) {
+          heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+      });
+
+      // Add loading animation
+      window.addEventListener("load", function () {
+        document.body.style.opacity = "1";
+        document.body.style.transition = "opacity 0.5s ease";
+      });
+
+      // Initialize theme based on user preference
+      if (
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+      ) {
+        document.documentElement.setAttribute("data-bs-theme", "dark");
+        document.getElementById("theme-icon").className = "fas fa-sun";
+      }
+    </script>
+  </body>
+</html>
